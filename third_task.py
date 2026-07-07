@@ -12,12 +12,13 @@ if not path.is_dir():
     print("This is not a directory")
     sys.exit()
 
-def show_file_structure(path):
+def show_file_structure(path, level = 1):
     for element in path.iterdir():
+        indent = "    " * level
         if element.is_dir():
-            print(f"{Fore.BLUE} {element.name} {Fore.RESET}")
-            show_file_structure(element)   
+            print(f"{indent}{Fore.BLUE} {element.name} {Fore.RESET}")
+            show_file_structure(element, level+1)   
         if element.is_file():
-            print(f"{Fore.YELLOW} {element.name} {Fore.RESET}")    
+            print(f"{indent}{Fore.YELLOW} {element.name} {Fore.RESET}")    
 
 show_file_structure(path)
